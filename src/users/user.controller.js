@@ -23,7 +23,7 @@ export const listarUsuarios = async (req = request, res = response) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "Error Al Obtener Usuario",
+            message: "Error Al Obtener Usuario :(",
             error
         });
     }
@@ -36,7 +36,7 @@ export const BuscarUsuarioID = async (req, res) => {
         if (!user) {
             return res.status(404).json({
                 success: false,
-                msg: "Usuario no encontrado"
+                msg: "Usuario no encontrado :("
             });
         }
 
@@ -47,7 +47,7 @@ export const BuscarUsuarioID = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            msg: "Error Al Obtener Usuario",
+            msg: "Error Al Obtener Usuario D:",
             error
         });
     }
@@ -61,7 +61,7 @@ export const actualizarUsuarios = async (req, res = response) => {
         if (req.usuario.role === "USER_ROLE" && id !== req.usuario._id.toString()) {
             return res.status(403).json({
                 success: false,
-                msg: "No está autorizado para actualizar la información de otro usuario"
+                msg: "No está autorizado para actualizar la información de otro usuario bobo :("
             });
         }
 
@@ -74,20 +74,20 @@ export const actualizarUsuarios = async (req, res = response) => {
         if (!user) {
             return res.status(404).json({
                 success: false,
-                msg: "Usuario no encontrado"
+                msg: "Usuario no encontrado :("
             });
         }
 
         res.status(200).json({
             success: true,
-            msg: "Usuario Actualizado!",
+            msg: "Usuario Actualizado :>)",
             user
         });
 
     } catch (error) {
         res.status(500).json({
             success: false,
-            msg: "Error Al Actualizar Usuario",
+            msg: "Error Al Actualizar Usuario :( (pipipi)",
             error
         });
     }

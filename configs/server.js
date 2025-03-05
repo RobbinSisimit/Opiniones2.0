@@ -8,7 +8,10 @@ import { dbConnection } from './mongo.js';
 import limiter from '../src/middlewares/validar-cant-peticiones.js'
 import authRoutes from '../src/auth/auth.routes.js'
 import userRoutes from "../src/users/user.routes.js"
+import categoryRoutes from "../src/categoria/categoria.routes.js"
+import postRoutes from "../src/post/post.routes.js"
 
+import Categoria from '../src/categoria/categoria.model.js'
 import Usuario from "../src/users/user.model.js";
 import { hash } from "argon2";
 
@@ -24,12 +27,15 @@ const configurarMiddlewares = (app) => {
 const configurarRutas = (app) =>{
     app.use("/GestorOpiniones/v1/auth", authRoutes);
     app.use("/GestorOpiniones/v1/users", userRoutes);
+    app.use("/GestorOpiniones/v1/categorias", categoryRoutes);
+    app.use("/GestorOpiniones/v1/post", postRoutes);
 }
 
 const conectarDB = async () => {
     try {
         await dbConnection();
         console.log("Conexion Exitosa Con La Base De Datos :p");
+        await crearCategoriaGeneral()
     } catch (error) {
         console.log("Error Al Conectar Con La Base De Datos", error);
     }
@@ -58,6 +64,20 @@ const crearAdmin = async () => {
         }
     } catch (error) {
         console.error("Error al crear el administrador :(", error);
+    }
+};
+
+const crearCategoriaGeneral = async () => {
+    try {
+        const defaultCategory = await Categoria.findOne({ name: "General" });
+        if (!defaultCategory) {
+            await Categoria.create({ name: "General" });
+            console.log("Categoría por defecto creada: General :D");
+        } else {
+            console.log("Categoría por defecto ya existente :D");
+        } 
+    } catch (error) {
+        console.error("Error al inicializar categorías :(", error);
     }
 };
 
