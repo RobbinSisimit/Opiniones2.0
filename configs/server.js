@@ -10,6 +10,7 @@ import authRoutes from '../src/auth/auth.routes.js'
 import userRoutes from "../src/users/user.routes.js"
 import categoryRoutes from "../src/categoria/categoria.routes.js"
 import postRoutes from "../src/post/post.routes.js"
+import commentRoutes from "../src/comentarios/comentarios.routes.js"
 
 import Categoria from '../src/categoria/categoria.model.js'
 import Usuario from "../src/users/user.model.js";
@@ -29,6 +30,7 @@ const configurarRutas = (app) =>{
     app.use("/GestorOpiniones/v1/users", userRoutes);
     app.use("/GestorOpiniones/v1/categorias", categoryRoutes);
     app.use("/GestorOpiniones/v1/post", postRoutes);
+    app.use("/GestorOpiniones/v1/comentarios", commentRoutes);
 }
 
 const conectarDB = async () => {

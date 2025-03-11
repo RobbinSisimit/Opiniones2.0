@@ -1,8 +1,9 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import {crearPost, listarPost} from "./post.controller.js";
+import {crearPost, listarPost, eliminarPost , editarPost} from "./post.controller.js";
 import {validarCampos} from "../middlewares/validar-campos.js";
 import {validarJWT} from "../middlewares/validar-jwt.js";
+import { validarPermisosPost } from "../middlewares/keeperPost.js";
 
 const router = Router();
 router.post(
@@ -17,5 +18,17 @@ router.post(
     crearPost
 )
 router.get("/", listarPost);
+
+router.put('/:Id', validarJWT,validarPermisosPost, editarPost);
+
+
+router.delete(
+    "/:id",
+    [
+        validarJWT,
+        validarPermisosPost
+    ],
+    eliminarPost
+)
 
 export default router;

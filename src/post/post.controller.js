@@ -53,7 +53,7 @@ export const listarPost = async(req, res) => {
     
     try {
         const posts = await Post.find(query)
-            .populate("keeper", "nombre")
+            .populate("keeper", "name")
             .populate("category", "name")
             .skip(Number(desde))
             .limit(Number(limite));
@@ -72,5 +72,42 @@ export const listarPost = async(req, res) => {
             message: "Error al obtener las publicaciones",
             error
         });
+    }
+};
+
+export const editarPost = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { title, description, category, image, status } = req.body;
+        const post = await Post.findByIdAndUpdate(id, { title, description, category, image, status },{new: true});
+
+        res.status(200).json({
+            success: true,
+            msg: "Categoria actualizada :D",
+            post
+        })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "Error al editar la publicación" });
+    }
+};
+
+export const eliminarPost = async (req, res) => {
+    try {
+        const { postId } = req.params;
+
+        const post = await Post.findById(postId);
+        if (!post) {
+            return res.status(404).json({ msg: "Publicación no encontrada" });
+        }
+
+        await Post.findByIdAndDelete(postId);
+
+        res.json({
+            msg: "Publicación eliminada correctamente"
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "Error al eliminar la publicación" });
     }
 };

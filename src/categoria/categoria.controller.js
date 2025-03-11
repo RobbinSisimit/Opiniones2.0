@@ -1,4 +1,5 @@
 import Categoria from '../categoria/categoria.model.js';
+import Post from '../post/post.model.js'
 
 export const crearCategoria = async (req, res) =>{
     try{
@@ -55,3 +56,44 @@ export const actulizarCategoria = async (req, res) =>{
         });
     }
 };
+
+export const EliminarCategoria = async (req, res) =>{
+    try{
+        const { id } = req.params;
+        const categoria = await Categoria.findById(id);
+
+        if(!categoria){
+            return res.status(400).json({
+                success: false,
+                msg: "Categoria no existe :("
+            })
+        }
+
+        const defaultCategory = await Categoria.findOne({ name: 'General' });
+        if (!defaultCategory) {
+            return res.status(404).json({
+                message: "No hay categoría por defecto para asignarle los productos"
+            });
+        }
+
+        const postSincategoria = await Post.find({ categoria: id });
+
+        await Post.updateMany({categoria: id}, { categoria: defaultCategory._id });
+
+        defaultCategory.post.push(...postSincategoria.map(post => post._id));
+        defaultCategory.markModified('post');
+        await defaultCategory.save();
+
+        const deleteCategoria = await Categoria.findByIdAndDelete(id);
+        res.status(200).json({
+            msg: "Categoria eliminada :D",
+            deleteCategoria
+        })
+    }catch(error){
+        res.status(500).json({
+            message: "Error al eliminar categoria",
+            error: error.message
+        });
+
+    }
+}

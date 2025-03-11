@@ -9,7 +9,10 @@ const CategoriaSchema = new mongoose.Schema({
     status: {
         type: Boolean,
         default: true
-    }
+    },
+    post:[{
+        type: mongoose.Schema.Types.ObjectId, ref: 'Post'
+    }]
 }, {
     timestamps: true,
     versionKey: false
