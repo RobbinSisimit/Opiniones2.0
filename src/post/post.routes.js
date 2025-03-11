@@ -3,7 +3,6 @@ import { check } from "express-validator";
 import {crearPost, listarPost, eliminarPost , editarPost} from "./post.controller.js";
 import {validarCampos} from "../middlewares/validar-campos.js";
 import {validarJWT} from "../middlewares/validar-jwt.js";
-import { validarPermisosPost } from "../middlewares/keeperPost.js";
 
 const router = Router();
 router.post(
@@ -19,14 +18,23 @@ router.post(
 )
 router.get("/", listarPost);
 
-router.put('/:Id', validarJWT,validarPermisosPost, editarPost);
+router.put(
+    "/:id",
+    [
+        validarJWT,
+        check("id", "No Es Un ID Valido").isMongoId(),
+        validarCampos
+    ],
+    editarPost
+)
 
 
 router.delete(
     "/:id",
     [
         validarJWT,
-        validarPermisosPost
+        check("id", "No Es Un ID Valido").isMongoId(),
+        validarCampos
     ],
     eliminarPost
 )

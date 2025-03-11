@@ -1,71 +1,79 @@
 import Comment from "./comentarios.model.js";
 import Post from "../post/post.model.js";
+import User from "../users/user.model.js"
 
 export const agregarComentario = async (req, res) => {
     try {
         const { content, postId } = req.body;
-        const userId = req.usuario._id;  // Obtenemos el ID del usuario autenticado
+        const [user, post] = await Promise.all([
+            User.findById(req.usuario._id),
+            Post.findById(postId)
+        ]);
 
-        // Verificar que la publicación existe
-        const post = await Post.findById(postId);
-        if (!post) {
-            return res.status(404).json({ msg: "Publicación no encontrada" });
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: "el usuario no exite"
+            });
         }
 
-        // Crear el comentario
-        const newComment = new Comment({
-            content,
-            author: userId,
-            post: postId
+        if (!post) {
+            return res.status(400).json({
+                success: false,
+                message: "no hay post con ese ID ?? copia bien el ID o saber que estas haciendo mal :D"
+            });
+        }
+
+        const comment = new Comment({
+            content, 
+            author: user._id, 
+            post: post._id, 
+            status: true 
         });
 
-        // Guardar en la base de datos
-        await newComment.save();
-
-        res.status(201).json({ msg: "Comentario agregado correctamente", newComment });
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ msg: "Error al agregar comentario" });
-    }
-};
-
-export const editarComentario = async (req, res) => {
-    try {
-        const { commentId } = req.params;
-        const { content } = req.body;
-        const userId = req.usuario._id; // Usuario autenticado
-
-        const comment = await Comment.findById(commentId);
-        if (!comment) {
-            return res.status(404).json({ msg: "Comentario no encontrado" });
-        }
-
-        comment.content = content;
         await comment.save();
 
-        res.json({ msg: "Comentario actualizado correctamente", comment });
+        res.status(200).json({
+            success: true,
+            message: "se agrego tu comentario cuidado te funan",
+            comment
+        });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: "Error al editar comentario" });
+        res.status(500).json({
+            success: false,
+            message: "Error al publicara comentarios :??",
+            error
+        });
     }
 };
 
-export const eliminarComentario = async (req, res) => {
+export const listarComentarios = async(req, res) => {
+    const {limite = 10, desde = 0} = req.query;
+    const query = {status: true};
     try {
-        const { commentId } = req.params;
-        const userId = req.usuario._id; 
+        const comments = await Comment.find(query)
+        .populate("author", "name")
+        .populate("post", "title")
+        .skip(Number(desde))
+        .limit(Number(limite));
+            
+        
+        
+        const total = await Comment.countDocuments(query);
 
-        const comment = await Comment.findById(commentId);
-        if (!comment) {
-            return res.status(404).json({ msg: "Comentario no encontrado :(" });
-        }
+        res.status(200).json({
+            success: true,
+            total,
+            comments
+        })
 
-        await Comment.findByIdAndDelete(commentId);
-
-        res.json({ msg: "Comentario eliminado correctamente :D" });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ msg: "Error al eliminar comentario Esta mal en algo" });
+        res.status(500).json({
+            success: false,
+            message: "error al listar comentarios por que no se :D",
+            error
+        })
     }
-};
+}
+

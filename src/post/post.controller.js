@@ -69,7 +69,7 @@ export const listarPost = async(req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "Error al obtener las publicaciones",
+            message: "Error al obtener las publicaciones :(",
             error
         });
     }
@@ -78,36 +78,93 @@ export const listarPost = async(req, res) => {
 export const editarPost = async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, description, category, image, status } = req.body;
-        const post = await Post.findByIdAndUpdate(id, { title, description, category, image, status },{new: true});
+        const { category, ...data } = req.body;
+
+        if (!req.usuario) {
+            return res.status(401).json({
+                success: false,
+                message: "Usuario no valido"
+            });
+        }
+
+        const post = await Post.findById(id).populate("keeper");
+
+        if (!post) {
+            return res.status(404).json({
+                success: false,
+                message: "no hay publicacion :D"
+            });
+        }
+
+        if (req.usuario.role === "USER_ROLE" && post.keeper._id.toString() !== req.usuario._id.toString()) {
+            return res.status(403).json({ 
+                success: false, 
+                msg: "esta no es tu publicacion BOBO :(" 
+            });
+        }
+
+        if (category) {
+            const categoryExists = await Category.findById(category);
+            if (!categoryExists) {
+                return res.status(400).json({
+                    success: false,
+                    message: "No existe esta categoria bobo copie bien"
+                });
+            }
+            post.category = category;
+        }
+
+        Object.assign(post, data);
+        await post.save();
 
         res.status(200).json({
             success: true,
-            msg: "Categoria actualizada :D",
+            msg: "post actulizado (happy happy)",
             post
-        })
+        });
+
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: "Error al editar la publicación" });
+        res.status(500).json({
+            success: false,
+            msg: "ENQUE ESTA MAL, EN ALGO",
+            error
+        });
     }
 };
 
-export const eliminarPost = async (req, res) => {
-    try {
-        const { postId } = req.params;
+export const eliminarPost = async(req, res) => {
+    const { id } = req.params;
 
-        const post = await Post.findById(postId);
+    try {
+        const post = await Post.findById(id);
+
         if (!post) {
-            return res.status(404).json({ msg: "Publicación no encontrada" });
+            return res.status(404).json({
+                success: false,
+                msg: "no hay publicacion con ese ID"
+            });
         }
 
-        await Post.findByIdAndDelete(postId);
+        if (req.usuario.role === "USER_ROLE" && post.keeper.toString() !== req.usuario._id.toString()) {
+            return res.status(403).json({ 
+                success: false, 
+                msg: "este no es tu publicacion vete :D" 
+            });
+        }
 
-        res.json({
-            msg: "Publicación eliminada correctamente"
+        await post.deleteOne();
+
+        res.status(200).json({
+            success: true,
+            message: "publicacion elminada :D"
         });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: "Error al eliminar la publicación" });
+        res.status(500).json({
+            success: false,
+            message: "ESTA MAL EN ALGO",
+            error
+        });
     }
 };
