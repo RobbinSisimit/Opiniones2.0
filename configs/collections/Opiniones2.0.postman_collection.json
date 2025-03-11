@@ -1,0 +1,522 @@
+{
+	"info": {
+		"_postman_id": "d57983e1-9cfc-4b1c-8683-64d0def23fc8",
+		"name": "Opiniones2.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37414241"
+	},
+	"item": [
+		{
+			"name": "user/login",
+			"item": [
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/users/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MxMzIzNTE4NDI3ZWI0Nzk3NDY1NmMiLCJpYXQiOjE3NDA4OTg2NTAsImV4cCI6MTc0MDkwMjI1MH0.n9a25AgQAsTog69XJ9xd4PDhsDKhP36mlbCZIr3gOvo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Emely\",\r\n    \"username\": \"azucenia\",\r\n    \"email\": \"emely@gmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/auth/login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MxMzIzNTE4NDI3ZWI0Nzk3NDY1NmMiLCJpYXQiOjE3NDA4OTg2NTAsImV4cCI6MTc0MDkwMjI1MH0.n9a25AgQAsTog69XJ9xd4PDhsDKhP36mlbCZIr3gOvo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\":\"Admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "categoria",
+			"item": [
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/categorias/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MxMzIzNTE4NDI3ZWI0Nzk3NDY1NmMiLCJpYXQiOjE3NDA4OTg2NTAsImV4cCI6MTc0MDkwMjI1MH0.n9a25AgQAsTog69XJ9xd4PDhsDKhP36mlbCZIr3gOvo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/categorias/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"categorias",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/categorias/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MxMzIzNTE4NDI3ZWI0Nzk3NDY1NmMiLCJpYXQiOjE3NDE2NjkwNzcsImV4cCI6MTc0MTY3MjY3N30.ZU4TaRfupydJFGX7LElqpJ_StRlmQ1XrzbOdPdV9BFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Miedo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/categorias/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"categorias",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/categorias/67cfc2f1c377cc2920b94bf3",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MxMzIzNTE4NDI3ZWI0Nzk3NDY1NmMiLCJpYXQiOjE3NDE2NjkwNzcsImV4cCI6MTc0MTY3MjY3N30.ZU4TaRfupydJFGX7LElqpJ_StRlmQ1XrzbOdPdV9BFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Terror\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/categorias/67cfc2f1c377cc2920b94bf3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"categorias",
+								"67cfc2f1c377cc2920b94bf3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/categorias/67cfc2f1c377cc2920b94bf3",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MxMzIzNTE4NDI3ZWI0Nzk3NDY1NmMiLCJpYXQiOjE3NDE2NjkwNzcsImV4cCI6MTc0MTY3MjY3N30.ZU4TaRfupydJFGX7LElqpJ_StRlmQ1XrzbOdPdV9BFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/categorias/67cfc2f1c377cc2920b94bf3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"categorias",
+								"67cfc2f1c377cc2920b94bf3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "post",
+			"item": [
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/post/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MxMzIzNTE4NDI3ZWI0Nzk3NDY1NmMiLCJpYXQiOjE3NDE2NjkwNzcsImV4cCI6MTc0MTY3MjY3N30.ZU4TaRfupydJFGX7LElqpJ_StRlmQ1XrzbOdPdV9BFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Payasos\",\r\n    \"category\":\"67c401806f592a29c9647120\",\r\n    \"content\":\"payasos juganod futboll\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/post/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"post",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/post/67cfc3daed1626dd20785e39",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MxMzIzNTE4NDI3ZWI0Nzk3NDY1NmMiLCJpYXQiOjE3NDE2NjkwNzcsImV4cCI6MTc0MTY3MjY3N30.ZU4TaRfupydJFGX7LElqpJ_StRlmQ1XrzbOdPdV9BFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Santa\",\r\n    \"category\":\"67c401806f592a29c9647120\",\r\n    \"content\":\"payasos juganod futboll\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/post/67cfc3daed1626dd20785e39",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"post",
+								"67cfc3daed1626dd20785e39"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/post/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MxMzIzNTE4NDI3ZWI0Nzk3NDY1NmMiLCJpYXQiOjE3NDE2NjkwNzcsImV4cCI6MTc0MTY3MjY3N30.ZU4TaRfupydJFGX7LElqpJ_StRlmQ1XrzbOdPdV9BFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/post/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"post",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/post/67cfc3daed1626dd20785e39",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MxMzIzNTE4NDI3ZWI0Nzk3NDY1NmMiLCJpYXQiOjE3NDE2NjkwNzcsImV4cCI6MTc0MTY3MjY3N30.ZU4TaRfupydJFGX7LElqpJ_StRlmQ1XrzbOdPdV9BFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/post/67cfc3daed1626dd20785e39",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"post",
+								"67cfc3daed1626dd20785e39"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comentarios",
+			"item": [
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/comentarios/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MxMzIzNTE4NDI3ZWI0Nzk3NDY1NmMiLCJpYXQiOjE3NDE2NjkwNzcsImV4cCI6MTc0MTY3MjY3N30.ZU4TaRfupydJFGX7LElqpJ_StRlmQ1XrzbOdPdV9BFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"JIJIJIJIJI\",\r\n    \"postId\": \"67cfb93c74a7c20f899becf9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/comentarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"comentarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/comentarios/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MxMzIzNTE4NDI3ZWI0Nzk3NDY1NmMiLCJpYXQiOjE3NDE2NjkwNzcsImV4cCI6MTc0MTY3MjY3N30.ZU4TaRfupydJFGX7LElqpJ_StRlmQ1XrzbOdPdV9BFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/comentarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"comentarios",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

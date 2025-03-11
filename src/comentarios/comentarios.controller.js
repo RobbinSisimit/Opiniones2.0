@@ -58,8 +58,6 @@ export const listarComentarios = async(req, res) => {
         .skip(Number(desde))
         .limit(Number(limite));
             
-        
-        
         const total = await Comment.countDocuments(query);
 
         res.status(200).json({
