@@ -75,3 +75,43 @@ export const listarComentarios = async(req, res) => {
     }
 }
 
+export const editarComentario = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { content } = req.body;
+
+        const comment = await Comment.findByIdAndUpdate(id, { content }, { new: true });
+
+        res.status(200).json({
+            success: true,
+            message: "Comentario actualizado correctamente",
+            comment
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error al editar el comentario",
+            error
+        });
+    }
+};
+
+export const eliminarComentario = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        await Comment.findByIdAndDelete(id);
+
+        res.status(200).json({
+            success: true,
+            message: "Comentario eliminado correctamente"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error al eliminar el comentario",
+            error
+        });
+    }
+};
+

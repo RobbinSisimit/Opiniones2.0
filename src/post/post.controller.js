@@ -1,6 +1,7 @@
 import User from "../users/user.model.js"
 import Post from "../post/post.model.js"
 import Category from "../categoria/categoria.model.js"
+import Comment from "../comentarios/comentarios.model.js";
 
 export const crearPost = async (req, res) => {
     try {
@@ -47,29 +48,42 @@ export const crearPost = async (req, res) => {
     }
 };
 
-export const listarPost = async(req, res) => {
+export const listarPost = async (req, res) => {
     const { limite = 10, desde = 0 } = req.query;
     const query = { status: true };
-    
+
     try {
         const posts = await Post.find(query)
             .populate("keeper", "name")
             .populate("category", "name")
             .skip(Number(desde))
-            .limit(Number(limite));
+            .limit(Number(limite))
+            .lean(); // Convierte los documentos a objetos JavaScript puros
+
+        // Obtener los comentarios de cada post
+        const postIds = posts.map(post => post._id);
+        const comments = await Comment.find({ post: { $in: postIds }, status: true })
+            .populate("author", "name")
+            .lean();
+
+        // Agregar los comentarios a cada post
+        const postsConComentarios = posts.map(post => ({
+            ...post,
+            comments: comments.filter(comment => comment.post.toString() === post._id.toString())
+        }));
 
         const total = await Post.countDocuments(query);
 
         res.status(200).json({
             success: true,
             total,
-            posts
+            posts: postsConComentarios
         });
 
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "Error al obtener las publicaciones :(",
+            message: "Error al obtener las publicaciones con comentarios :(",
             error
         });
     }
