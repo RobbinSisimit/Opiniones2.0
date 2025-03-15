@@ -515,6 +515,86 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/comentarios/67cfbe148c5f141008240096",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NmOWUxMmRkNDE3MzBjNzRiYWUxMmUiLCJpYXQiOjE3NDIwMTAzODgsImV4cCI6MTc0MjAxMzk4OH0.wvxv4qwV_IZqIAai6mgfVtptiIbFcldKZrqlkz0I5fk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\":\":D\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/comentarios/67cfbe148c5f141008240096",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"comentarios",
+								"67cfbe148c5f141008240096"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3012/GestorOpiniones/v1/comentarios/67cfbe148c5f141008240096",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NmOWUxMmRkNDE3MzBjNzRiYWUxMmUiLCJpYXQiOjE3NDIwMTAzODgsImV4cCI6MTc0MjAxMzk4OH0.wvxv4qwV_IZqIAai6mgfVtptiIbFcldKZrqlkz0I5fk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\":\":D\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3012/GestorOpiniones/v1/comentarios/67cfbe148c5f141008240096",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3012",
+							"path": [
+								"GestorOpiniones",
+								"v1",
+								"comentarios",
+								"67cfbe148c5f141008240096"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
